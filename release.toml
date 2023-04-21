@@ -7,4 +7,4 @@ sign-tag = true
 tag-prefix = ""
 tag-message = "{{version}}"
 
-publish = false
+publish = true
