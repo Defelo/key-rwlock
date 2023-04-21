@@ -1,0 +1,15 @@
+[package]
+name = "key-rwlock"
+version = "0.1.0"
+description = "Simple library for keyed asynchronous reader-writer locks"
+license = "MIT"
+documentation = "https://docs.rs/key-rwlock/"
+repository = "https://github.com/Defelo/key-rwlock"
+edition = "2021"
+rust-version = "1.63.0"
+
+[dependencies]
+tokio = { version = "1.27.0", default-features = false, features = ["sync"] }
+
+[dev-dependencies]
+tokio = { version = "1.27.0", default-features = false, features = ["rt-multi-thread", "macros"] }
