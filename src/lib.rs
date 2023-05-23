@@ -126,6 +126,20 @@ mod tests {
     use super::*;
 
     #[tokio::test]
+    async fn test_basic_funcionality() {
+        let lock = KeyRwLock::new();
+
+        let _foo = lock.write("foo").await;
+        let _bar = lock.read("bar").await;
+
+        assert!(lock.try_read("foo").await.is_err());
+        assert!(lock.try_write("foo").await.is_err());
+
+        assert!(lock.try_read("bar").await.is_ok());
+        assert!(lock.try_write("bar").await.is_err());
+    }
+
+    #[tokio::test]
     async fn test_clean_up() {
         let lock = KeyRwLock::new();
         let _foo_write = lock.write("foo_write").await;
