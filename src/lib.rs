@@ -1,24 +1,4 @@
-//! Simple library for keyed asynchronous reader-writer locks.
-//!
-//! #### Example
-//! ```
-//! use key_rwlock::KeyRwLock;
-//!
-//! #[tokio::main]
-//! async fn main() {
-//!     let lock = KeyRwLock::new();
-//!
-//!     let _foo = lock.write("foo").await;
-//!     let _bar = lock.read("bar").await;
-//!
-//!     assert!(lock.try_read("foo").await.is_err());
-//!     assert!(lock.try_write("foo").await.is_err());
-//!
-//!     assert!(lock.try_read("bar").await.is_ok());
-//!     assert!(lock.try_write("bar").await.is_err());
-//! }
-//! ```
-
+#![doc = include_str!("../README.md")]
 #![forbid(unsafe_code)]
 #![warn(clippy::dbg_macro, clippy::use_debug)]
 #![warn(missing_docs, missing_debug_implementations, clippy::todo)]

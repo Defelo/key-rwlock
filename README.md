@@ -7,3 +7,22 @@ https://app.codecov.io/gh/Defelo/key-rwlock/settings/badge
 
 # key-rwlock
 Simple library for keyed asynchronous reader-writer locks.
+
+#### Example
+```rust
+use key_rwlock::KeyRwLock;
+
+#[tokio::main]
+async fn main() {
+    let lock = KeyRwLock::new();
+
+    let _foo = lock.write("foo").await;
+    let _bar = lock.read("bar").await;
+
+    assert!(lock.try_read("foo").await.is_err());
+    assert!(lock.try_write("foo").await.is_err());
+
+    assert!(lock.try_read("bar").await.is_ok());
+    assert!(lock.try_write("bar").await.is_err());
+}
+```
