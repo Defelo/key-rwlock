@@ -7,7 +7,7 @@
 # key-rwlock
 Simple library for keyed asynchronous reader-writer locks.
 
-#### Example
+## Example
 ```rust
 use key_rwlock::KeyRwLock;
 
