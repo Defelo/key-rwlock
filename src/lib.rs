@@ -14,8 +14,8 @@ use std::{
 
 use tokio::sync::{Mutex, OwnedRwLockReadGuard, OwnedRwLockWriteGuard, RwLock, TryLockError};
 
-/// An async reader-writer lock, that locks based on a key, while allowing other keys to lock independently.
-/// Based on a [HashMap] of [RwLock]s.
+/// An async reader-writer lock, that locks based on a key, while allowing other
+/// keys to lock independently. Based on a [HashMap] of [RwLock]s.
 #[derive(Debug)]
 pub struct KeyRwLock<K> {
     /// The inner map of locks for specific keys.
@@ -43,7 +43,8 @@ where
         Self::default()
     }
 
-    /// Lock this key with shared read access, returning a guard. Cleans up locks every 1000 accesses.
+    /// Lock this key with shared read access, returning a guard. Cleans up
+    /// locks every 1000 accesses.
     pub async fn read(&self, key: K) -> OwnedRwLockReadGuard<()> {
         let mut locks = self.locks.lock().await;
 
@@ -57,7 +58,8 @@ where
         lock.read_owned().await
     }
 
-    /// Lock this key with exclusive write access, returning a guard. Cleans up locks every 1000 accesses.
+    /// Lock this key with exclusive write access, returning a guard. Cleans up
+    /// locks every 1000 accesses.
     pub async fn write(&self, key: K) -> OwnedRwLockWriteGuard<()> {
         let mut locks = self.locks.lock().await;
 
@@ -71,8 +73,8 @@ where
         lock.write_owned().await
     }
 
-    /// Try lock this key with shared read access, returning immediately. Cleans up locks every 1000
-    /// accesses.
+    /// Try lock this key with shared read access, returning immediately. Cleans
+    /// up locks every 1000 accesses.
     pub async fn try_read(&self, key: K) -> Result<OwnedRwLockReadGuard<()>, TryLockError> {
         let mut locks = self.locks.lock().await;
 
@@ -86,8 +88,8 @@ where
         lock.try_read_owned()
     }
 
-    /// Try lock this key with exclusive write access, returning immediately. Cleans up locks every 1000
-    /// accesses.
+    /// Try lock this key with exclusive write access, returning immediately.
+    /// Cleans up locks every 1000 accesses.
     pub async fn try_write(&self, key: K) -> Result<OwnedRwLockWriteGuard<()>, TryLockError> {
         let mut locks = self.locks.lock().await;
 
