@@ -1,6 +1,6 @@
 [package]
 name = "key-rwlock"
-version = "0.1.1"
+version = "0.1.2"
 description = "Simple library for keyed asynchronous reader-writer locks"
 license = "MIT"
 documentation = "https://docs.rs/key-rwlock/"
